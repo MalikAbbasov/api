@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <script>
+let hash = window.location.hash;
+hash=hash.substring(1);
+console.log(hash);
+
+fetch(`https://northwind.vercel.app/api/categories/${hash}`)
+.then(res=>res.json())
+.then((data)=>{
+    createCardElements(data.id,data.name,data.description)
+});
+
+
+
+
+
+// .then(data=>{
+//     // console.log(data);
+//     data.forEach(element => {
+//         createCardElements(element.id,element.name,element.description)
+//     });
+// })
+
+
+function createCardElements(id, name, description) {
+    const card = document.createElement("div")
+    const cardid = document.createElement("div")
+    const cardname = document.createElement("div")
+    const carddescription = document.createElement("div")
+
+    cardid.textContent = id;
+    cardname.textContent = name;
+    carddescription.textContent = description;
+
+    card.style.width="250px";
+    card.style.border="1px solid yellow"
+    card.style.backgroundColor="hotpink"
+    card.style.color="white"
+
+    card.append(cardid,cardname,carddescription)
+    document.body.appendChild(card)
+}
+
+
+    </script>
+</body>
+</html>
